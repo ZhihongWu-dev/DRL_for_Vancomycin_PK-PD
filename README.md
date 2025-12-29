@@ -12,8 +12,7 @@ DRL-for-Vancomycin-PK-PD/
 │   ├── backend/
 │   └── frontend/
 ├── original_data      # 原始数据
+├── intermediate_data  # 中间数据
 ├── .gitignore         # 全局忽略文件
-├── rawdata_description      # 中文版rawdata描述
-├── rawdata_documentation_english      # 英文版rawdata描述
 └── README.md          # 整个项目的总导览
 
