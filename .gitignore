@@ -1,0 +1,8 @@
+# Ignore training outputs
+runs/
+algorithms/iql/runs/
+
+# Python cache
+__pycache__/
+*.pyc
+.env

@@ -1,0 +1,22 @@
+data:
+  path: intermediate_data/ready_data.csv  # not used for smoke run when dataframe provided
+  sheet: 0
+  state_cols: ["vanco_level(ug/mL)", "creatinine(mg/dL)", "wbc(K/uL)", "bun(mg/dL)", "temperature", "sbp", "heart_rate"]
+
+train:
+  seed: 0
+  total_steps: 1000
+  batch_size: 128
+  log_interval: 10
+  ckpt_interval: 100
+  buffer_capacity: 1000
+
+model:
+  hidden: [64, 64]
+  lr: 0.0003
+  gamma: 0.99
+  tau: 0.7
+  beta: 3.0
+  weight_clip: 100.0
+
+workdir: algorithms/iql/runs/exp_manual_ok

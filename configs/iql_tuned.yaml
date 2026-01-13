@@ -1,0 +1,36 @@
+# IQL调优配置 - 解决Q函数发散问题
+# 主要改动：
+# 1. 降低学习率 0.0003 -> 0.0001 (减少更新幅度)
+# 2. 降低gamma 0.99 -> 0.95 (医疗场景不需要太长远的折扣)
+# 3. 增加训练步数 1000 -> 3000 (给模型更多时间收敛)
+# 4. 降低beta 3.0 -> 1.0 (减弱策略对优势函数的敏感度)
+
+data:
+  path: intermediate_data/ready_data.csv
+  sheet: 0
+  state_cols:
+    - vanco_level(ug/mL)
+    - creatinine(mg/dL)
+    - wbc(K/uL)
+    - bun(mg/dL)
+    - temperature
+    - sbp
+    - heart_rate
+
+train:
+  seed: 0
+  total_steps: 3000          # 增加训练步数
+  batch_size: 128
+  log_interval: 20           # 降低日志频率
+  ckpt_interval: 300         # 每300步保存一次
+  buffer_capacity: 1000
+
+model:
+  hidden: [64, 64]
+  lr: 0.0001                 # 降低学习率 (原0.0003)
+  gamma: 0.95                # 降低折扣因子 (原0.99)
+  tau: 0.7                   # expectile保持不变
+  beta: 1.0                  # 降低AWR温度 (原3.0)
+  weight_clip: 100.0
+
+workdir: algorithms/iql/runs/exp_tuned

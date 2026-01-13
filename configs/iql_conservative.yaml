@@ -1,0 +1,32 @@
+# IQL超保守配置 - 最小学习率 + 更小网络
+# 策略：极低学习率 + 小gamma + 小网络 + 长训练
+
+data:
+  path: intermediate_data/ready_data.csv
+  sheet: 0
+  state_cols:
+    - vanco_level(ug/mL)
+    - creatinine(mg/dL)
+    - wbc(K/uL)
+    - bun(mg/dL)
+    - temperature
+    - sbp
+    - heart_rate
+
+train:
+  seed: 0
+  total_steps: 5000           # 更长训练
+  batch_size: 64              # 减小batch size
+  log_interval: 50
+  ckpt_interval: 500
+  buffer_capacity: 1000
+
+model:
+  hidden: [32, 32]            # 更小的网络
+  lr: 0.00003                 # 极低学习率 (1/10)
+  gamma: 0.90                 # 更短视的折扣
+  tau: 0.7
+  beta: 0.5                   # 更小的AWR权重
+  weight_clip: 100.0
+
+workdir: algorithms/iql/runs/exp_conservative

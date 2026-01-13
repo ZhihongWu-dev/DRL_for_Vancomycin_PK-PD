@@ -1,0 +1,22 @@
+data:
+  path: intermediate_data/ready_data.csv  # default path, can be overwritten
+  sheet: 0
+  state_cols: [vanco_level, creatinine, wbc, bun, temperature, sbp, heart_rate]
+
+train:
+  seed: 0
+  total_steps: 10
+  batch_size: 32
+  log_interval: 2
+  ckpt_interval: 5
+  buffer_capacity: 1000
+
+model:
+  hidden: [64, 64]
+  lr: 3e-4
+  gamma: 0.99
+  tau: 0.7
+  beta: 3.0
+  weight_clip: 100.0
+
+workdir: algorithms/iql/runs/iql_example
