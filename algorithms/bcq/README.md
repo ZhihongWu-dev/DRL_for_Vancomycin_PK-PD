@@ -1,18 +1,5 @@
 # BCQ: Batch-Constrained Q-Learning for Offline Reinforcement Learning
 
-<div align="center">
-
-![Python](https://img.shields.io/badge/Python-3.8%2B-blue)
-![PyTorch](https://img.shields.io/badge/PyTorch-1.9%2B-red)
-![License](https://img.shields.io/badge/License-MIT-green)
-![Status](https://img.shields.io/badge/Status-Active-brightgreen)
-
-**A complete implementation of BCQ for offline RL with publication-grade analysis on clinical dosing data**
-
-[Features](#features) • [Quick Start](#quick-start) • [Documentation](#documentation) • [Results](#results) • [Citation](#citation)
-
-</div>
-
 ---
 
 ## Overview
