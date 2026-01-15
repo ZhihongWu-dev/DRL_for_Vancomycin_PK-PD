@@ -1,0 +1,57 @@
+# BCQ (Batch-Constrained Q-Learning) Configuration
+# This config file specifies data, model, and training parameters for BCQ
+
+data:
+  # Path to data file (CSV or XLSX)
+  path: "ready_data.xlsx"
+  sheet: 0
+  # State columns (all columns except stay_id, step_4hr, totalamount_mg, step_reward)
+  state_cols:
+    - "age"
+    - "gender"
+    - "weight"
+    - "height"
+    # Add other state features here
+
+model:
+  # Network architecture
+  hidden: [256, 256]
+  
+  # VAE latent dimension
+  latent_dim: 2
+  
+  # Perturbation limit (xi): controls how much the actor can adjust VAE actions
+  # Typical range: 0.01 - 0.1 (relative to action range [-1, 1])
+  xi: 0.05
+  
+  # Learning rate
+  lr: 3e-4
+  
+  # RL hyperparameters
+  gamma: 0.99           # Discount factor
+  tau: 0.005            # Soft update coefficient for target networks
+  num_candidates: 10    # Number of candidate actions to sample from VAE
+
+train:
+  # Random seed
+  seed: 42
+  
+  # Training duration
+  total_steps: 10000
+  batch_size: 256
+  
+  # Replay buffer capacity (if None, uses 10x dataset size)
+  buffer_capacity: null
+  
+  # Logging and checkpointing
+  log_interval: 100
+  ckpt_interval: 500
+  
+  # Working directory for logs and checkpoints
+  # If not specified, uses runs/bcq_<timestamp>
+  workdir: null
+
+# Note on action normalization:
+# The training script automatically normalizes actions to [-1, 1] range
+# based on min/max values in the dataset. This is important for BCQ stability.
+# The checkpoint stores action_min and action_max for denormalization at inference.
